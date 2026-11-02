@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ganesh – Portfolio</title>
+<meta name="description" content="Profile of Ganesh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F1F4F9; --surface:#FFFFFF; --ink:#14213D; --muted:#4D5B75; --line:#D5DCE8;
+  --accent:#0B8F7E; --accent-ink:#FFFFFF; --violet:#5B4BDB; --dot:#C9D2E3;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1424; --surface:#161E33; --ink:#E8EDF7; --muted:#A3B0C8; --line:#2A3553;
+    --accent:#3ED1BC; --accent-ink:#0E1424; --violet:#9A8DFF; --dot:#2E3A5C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1424; --surface:#161E33; --ink:#E8EDF7; --muted:#A3B0C8; --line:#2A3553;
+  --accent:#3ED1BC; --accent-ink:#0E1424; --violet:#9A8DFF; --dot:#2E3A5C;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.brand{font:700 1.1rem "Bricolage Grotesque",sans-serif;color:var(--ink);text-decoration:none}
+nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:3rem 0 4rem}
+.hero h1{font-size:clamp(2.8rem,8vw,5.4rem);font-weight:800;letter-spacing:-.03em}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.25rem 0 1.75rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.4rem;border-radius:999px;font-weight:500;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--ink);border-color:var(--line)}
+.btn:hover{border-color:var(--violet)}
+
+.plot{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1rem;margin:0}
+.plot svg{display:block;width:100%;height:auto}
+.plot figcaption{font-size:.85rem;color:var(--muted);padding:.5rem .25rem 0}
+.plot .d{fill:var(--dot)}
+.plot .hi{fill:var(--accent)}
+.plot .ax{stroke:var(--line);stroke-width:1.5}
+.plot .fit{stroke:var(--violet);stroke-width:2.5;stroke-dasharray:6 6;fill:none;stroke-dashoffset:0;animation:draw 3s ease-out 1}
+.plot text{fill:var(--muted);font:12px "IBM Plex Sans",sans-serif}
+@keyframes draw{from{stroke-dasharray:400;stroke-dashoffset:400}to{stroke-dasharray:6 6;stroke-dashoffset:0}}
+
+section{padding:3rem 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:1.5rem;letter-spacing:-.02em}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.about p{margin:0 0 1rem;max-width:38rem}
+dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.25rem;align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem}
+dl.facts dt{color:var(--muted)}
+dl.facts dd{margin:0;font-weight:500}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem}
+.skill h3{font-size:1.15rem;margin-bottom:.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:.15rem .7rem;font-size:.9rem;color:var(--muted)}
+
+.proj{display:grid;gap:1.25rem}
+.item{display:grid;grid-template-columns:11rem 1fr;gap:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .when{color:var(--muted);font-size:.95rem}
+.item h3{font-size:1.2rem;margin-bottom:.3rem}
+.item p{margin:0;max-width:40rem;color:var(--muted)}
+
+.contact p{max-width:34rem;color:var(--muted)}
+.links{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+footer{padding:2rem 0 2.5rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:760px){
+  .hero,.about{grid-template-columns:1fr}
+  .hero{padding-top:1.5rem}
+  .item{grid-template-columns:1fr;gap:.25rem}
+}
+@media (prefers-reduced-motion:reduce){.plot .fit{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">Ganesh</a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Ganesh</h1>
+        <p class="lead">Add a one-line introduction about yourself here: your field, what you work on and what you care about.</p>
+        <div class="btns">
+          <a class="btn primary" href="#work">See my work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <figure class="plot" aria-label="Scatter plot with a trend line rising to the right">
+        <svg viewBox="0 0 320 240" role="img" aria-hidden="true">
+          <line class="ax" x1="30" y1="205" x2="305" y2="205"/>
+          <line class="ax" x1="30" y1="20" x2="30" y2="205"/>
+          <g class="d">
+            <circle cx="55" cy="180" r="5"/><circle cx="78" cy="165" r="5"/><circle cx="92" cy="185" r="5"/>
+            <circle cx="115" cy="150" r="5"/><circle cx="135" cy="160" r="5"/><circle cx="150" cy="128" r="5"/>
+            <circle cx="172" cy="138" r="5"/><circle cx="190" cy="108" r="5"/><circle cx="212" cy="118" r="5"/>
+            <circle cx="232" cy="88" r="5"/><circle cx="255" cy="70" r="5"/><circle cx="278" cy="78" r="5"/>
+          </g>
+          <circle class="hi" cx="205" cy="96" r="8"/>
+          <path class="fit" d="M45 185 L290 62"/>
+          <text x="34" y="222">Effort</text>
+          <text x="38" y="34">Growth</text>
+        </svg>
+        <figcaption>Consistent effort, steady growth.</figcaption>
+      </figure>
+    </div>
+
+    <section id="about">
+      <h2>About me</h2>
+      <div class="about">
+        <div>
+          <p>Write a short paragraph about your background, your studies or career, and what you enjoy working on.</p>
+          <p>Add a second paragraph about your current goals or what you are learning right now.</p>
+        </div>
+        <dl class="facts">
+          <dt>Programme</dt><dd>Add your course or role</dd>
+          <dt>University</dt><dd>Add your institution</dd>
+          <dt>Based in</dt><dd>Add your city</dd>
+          <dt>Interests</dt><dd>Add your interests</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill"><h3>Skill group 1</h3>
+          <ul class="chips"><li>Skill</li><li>Skill</li><li>Skill</li></ul></div>
+        <div class="skill"><h3>Skill group 2</h3>
+          <ul class="chips"><li>Skill</li><li>Skill</li><li>Skill</li></ul></div>
+        <div class="skill"><h3>Skill group 3</h3>
+          <ul class="chips"><li>Skill</li><li>Skill</li><li>Skill</li></ul></div>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>Work and learning</h2>
+      <div class="proj">
+        <div class="item">
+          <div class="when">Year</div>
+          <div><h3>Project title</h3>
+          <p>Write one or two lines on the problem, the tools you used and the result.</p></div>
+        </div>
+        <div class="item">
+          <div class="when">Project 2</div>
+          <div><h3>Project title</h3>
+          <p>Write one or two lines on the problem, the data you used and what you found.</p></div>
+        </div>
+        <div class="item">
+          <div class="when">Project 3</div>
+          <div><h3>Project title</h3>
+          <p>Write one or two lines on the tools you used and the result.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s connect</h2>
+      <p>Have a question, a project idea or feedback? Send me a message.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:ganesh@example.com">Email Ganesh</a>
+        <a class="btn ghost" href="https://www.linkedin.com/" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Ganesh</footer>
+</div>
+</body>
+</html>
